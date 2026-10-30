@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Калькулятор клининга</title>
+    <style>
+        body { background-color: #0f172a; color: #f8fafc; font-family: 'Arial', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .calc-box { background-color: #1e293b; padding: 30px; border-radius: 20px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5); width: 350px; border: 1px solid #334155; }
+        h2 { text-align: center; color: #38bdf8; margin-bottom: 25px; font-size: 22px; }
+        .input-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-size: 14px; color: #94a3b8; }
+        input[type="number"] { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #475569; background-color: #0f172a; color: #fff; font-size: 16px; box-sizing: border-box; }
+        .service { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; background: #0f172a; padding: 10px; border-radius: 8px; cursor: pointer; transition: 0.2s; }
+        .service:hover { background: #1e293b; border: 1px solid #38bdf8; }
+        .service span { font-size: 15px; display: flex; align-items: center; gap: 8px; }
+        input[type="checkbox"] { width: 18px; height: 18px; accent-color: #38bdf8; cursor: pointer; }
+        button { width: 100%; padding: 15px; background-color: #38bdf8; color: #0f172a; border: none; border-radius: 10px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 15px; transition: 0.3s; }
+        button:hover { background-color: #0ea5e9; transform: scale(1.02); }
+        .result { text-align: center; margin-top: 20px; font-size: 26px; font-weight: bold; color: #38bdf8; text-shadow: 0 0 10px rgba(56, 189, 248, 0.4); }
+    </style>
+</head>
+<body>
+    <div class="calc-box">
+        <h2>Уборка под ключ</h2>
+        
+        <div class="input-group">
+            <label>Площадь помещения (м²)</label>
+            <input type="number" id="area" value="50" min="10">
+        </div>
+
+        <label style="margin-bottom: 10px; font-size: 16px; color: #fff;">Дополнительные услуги:</label>
+        
+        <div class="service" onclick="document.getElementById('windows').click()">
+            <span>🪟 Мытье окон (от 500₽)</span>
+            <input type="checkbox" id="windows" value="1500">
+        </div>
+        
+        <div class="service" onclick="document.getElementById('sofa').click()">
+            <span>🛋️ Химчистка дивана (от 1500₽)</span>
+            <input type="checkbox" id="sofa" value="2000">
+        </div>
+        
+        <div class="service" onclick="document.getElementById('fridge').click()">
+            <span>🧊 Мойка холодильника (от 500₽)</span>
+            <input type="checkbox" id="fridge" value="500">
+        </div>
+
+        <button onclick="calculate()">Рассчитать стоимость</button>
+        <div class="result" id="total">Итого: 0 ₽</div>
+    </div>
+
+    <script>
+        function calculate() {
+            const area = document.getElementById('area').value;
+            let total = area * 150; // 150 рублей за квадратный метр
+
+            if (document.getElementById('windows').checked) total += 1500;
+            if (document.getElementById('sofa').checked) total += 2000;
+            if (document.getElementById('fridge').checked) total += 500;
+
+            document.getElementById('total').innerText = 'Итого: ' + total + ' ₽';
+        }
+    </script>
+</body>
+</html>
